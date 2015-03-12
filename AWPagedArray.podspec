@@ -6,10 +6,10 @@ Pod::Spec.new do |s|
                        AWPagedArray is an Objective-C class which acts as an NSArray proxy
                        for easier paging mechanisms in UITableView's and UICollectionView's.
                       DESC
-  s.homepage     = 'https://github.com/MrAlek/AWPagedArray'
+  s.homepage     = 'https://github.com/rrossinvicara/AWPagedArray'
   s.author       = { 'Alek Åström' => 'hi@mralek.se' }
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
-  s.source       = { :git => "https://github.com/MrAlek/AWPagedArray.git", :tag => s.version.to_s }
+  s.source       = { :git => "https://github.com/rrossinvicara/AWPagedArray.git", :tag => s.version.to_s }
   s.source_files = '*.{h,m}'
   s.requires_arc = true
   s.ios.deployment_target = "6.0"
