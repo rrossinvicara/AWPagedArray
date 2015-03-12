@@ -58,6 +58,7 @@
 - (NSUInteger)pageForIndex:(NSUInteger)index;
 - (NSIndexSet *)indexSetForPage:(NSUInteger)page;
 
+@property (nonatomic, readwrite) NSUInteger totalCount;
 @property (nonatomic, readonly) NSUInteger objectsPerPage;
 @property (nonatomic, readonly) NSUInteger numberOfPages;
 @property (nonatomic, readonly) NSInteger initialPageIndex;
