@@ -100,7 +100,13 @@
     for (NSInteger pageIndex = _initialPageIndex; pageIndex < [self numberOfPages] + _initialPageIndex; pageIndex++) {
         NSArray *page = _pages[@(pageIndex)];
         if (page) {
-            [page enumerateObjectsUsingBlock:block];
+            [page enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+                idx += pageIndex * [self numberOfPages];
+
+                if (block) {
+                    block(obj, idx, stop);
+                }
+            }];
         }
     }
 }
