@@ -93,6 +93,18 @@
     _needsUpdateProxiedArray = YES;
 }
 
+#pragma mark - Helper methods
+
+- (void)enumerateExistingObjectsUsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block
+{
+    for (NSInteger pageIndex = _initialPageIndex; pageIndex < [self numberOfPages] + _initialPageIndex; pageIndex++) {
+        NSArray *page = _pages[@(pageIndex)];
+        if (page) {
+            [page enumerateObjectsUsingBlock:block];
+        }
+    }
+}
+
 #pragma mark - NSArray overrides
 - (id)objectAtIndex:(NSUInteger)index
 {
