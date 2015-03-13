@@ -74,6 +74,7 @@
 @property (nonatomic, weak) id<AWPagedArrayDelegate> delegate;
 
 - (void)enumerateExistingObjectsUsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block;
+- (void)invalidateContents;
 
 @end
 

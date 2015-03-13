@@ -111,6 +111,13 @@
     }
 }
 
+- (void)invalidateContents
+{
+    [_pages removeAllObjects];
+
+    _needsUpdateProxiedArray = YES;
+}
+
 #pragma mark - NSArray overrides
 - (id)objectAtIndex:(NSUInteger)index
 {
