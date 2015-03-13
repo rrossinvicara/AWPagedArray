@@ -152,13 +152,16 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {
+    NSMethodSignature *methodSig = [super methodSignatureForSelector:sel];
+    if (methodSig)
+        return methodSig;
+
     return [[self _proxiedArray] methodSignatureForSelector:sel];
 }
 
 + (BOOL)respondsToSelector:(SEL)aSelector
 {
-    id proxy = [[[self class] alloc] init];
-    return [proxy respondsToSelector:aSelector];
+    return [super respondsToSelector:aSelector] || [[self class] instancesRespondToSelector:aSelector];
 }
 
 - (NSString *)description
