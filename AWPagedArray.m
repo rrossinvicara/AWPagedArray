@@ -24,6 +24,8 @@
 
 #import "AWPagedArray.h"
 
+@import ObjectiveC.runtime;
+
 @implementation AWPagedArray {
     NSUInteger _objectsPerPage;
     NSMutableDictionary *_pages;
@@ -140,11 +142,17 @@
 
 #pragma mark - Proxying
 
-+ (Class) class {
++ (Class)proxiedClass
+{
     return [NSArray class];
 }
 
-    - (void) forwardInvocation : (NSInvocation *) anInvocation
+- (BOOL)isKindOfClass:(Class)aClass
+{
+    return [[self _proxiedArray] isKindOfClass:aClass];
+}
+
+- (void)forwardInvocation:(NSInvocation *)anInvocation
 {
     [anInvocation setTarget:[self _proxiedArray]];
     [anInvocation invoke];
@@ -155,9 +163,14 @@
     return [[self _proxiedArray] methodSignatureForSelector:sel];
 }
 
+- (BOOL)respondsToSelector:(SEL)aSelector
+{
+    return class_getInstanceMethod([self class], aSelector) || [[self _proxiedArray] respondsToSelector:aSelector];
+}
+
 + (BOOL)respondsToSelector:(SEL)aSelector
 {
-    return [super respondsToSelector:aSelector] || [[self class] instancesRespondToSelector:aSelector];
+    return class_getClassMethod(self, aSelector) || [[self proxiedClass] instancesRespondToSelector:aSelector];
 }
 
 - (NSString *)description
