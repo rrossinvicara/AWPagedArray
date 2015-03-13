@@ -152,10 +152,6 @@
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel
 {
-    NSMethodSignature *methodSig = [super methodSignatureForSelector:sel];
-    if (methodSig)
-        return methodSig;
-
     return [[self _proxiedArray] methodSignatureForSelector:sel];
 }
 
