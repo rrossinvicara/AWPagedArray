@@ -127,6 +127,12 @@
 
     return object;
 }
+
+- (id)rawObjectAtIndex:(NSUInteger)index
+{
+    return [[self _proxiedArray] objectAtIndex:index];
+}
+
 - (id)objectAtIndexedSubscript:(NSUInteger)index
 {
     return [self objectAtIndex:index];

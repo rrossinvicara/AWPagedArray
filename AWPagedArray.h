@@ -76,6 +76,8 @@
 - (void)enumerateExistingObjectsUsingBlock:(void (^)(id obj, NSUInteger idx, BOOL *stop))block;
 - (void)invalidateContents;
 
+- (id)rawObjectAtIndex:(NSUInteger)index;
+
 @end
 
 @protocol AWPagedArrayDelegate<NSObject>
